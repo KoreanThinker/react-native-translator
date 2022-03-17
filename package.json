@@ -1,0 +1,48 @@
+{
+  "name": "react-native-translator",
+  "title": "React Native Translator",
+  "version": "1.0.0",
+  "description": "Free translate component & hook",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/koreanthinker/react-native-instagram-like-image-cropper"
+  },
+  "keywords": [
+    "react-native-translator",
+    "react-native-translate",
+    "react-native",
+    "react native",
+    "translate",
+    "translator"
+  ],
+  "author": {
+    "name": "KoreanThinker",
+    "email": "coderhyun476@gmail.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "@react-native-community/image-editor": "2.3.0",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/react-native": "^0.67.2",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "react": "17.0.2",
+    "react-native": "0.67.2",
+    "typescript": "^3.8.3"
+  }
+}
