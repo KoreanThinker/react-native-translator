@@ -9,7 +9,7 @@ Free google translate component & hook
 
 ## Preview
 
-<img width="360" src="https://user-images.githubusercontent.com/48207131/158811671-c50b8db5-7926-4a66-b22b-d02e71af5a46.gif" />
+<img width="360" src="https://user-images.githubusercontent.com/48207131/158834248-05331dd0-d294-4041-9d7b-cb72b5e75737.gif" />
 
 ## Getting started
 
@@ -98,6 +98,25 @@ const App = () => {
     </View>
   );
 };
+```
+
+## API
+
+```ts
+// Component
+interface TranslatorProps {
+  from: LanguageCode;
+  to: LanguageCode;
+  value: string;
+  onTranslated: (t: string) => void;
+}
+// Hook
+translate: (
+  from: LanguageCode,
+  to: LanguageCode,
+  value: string,
+  timeout?: number | undefined,
+) => Promise<string>;
 ```
 
 ## Support languages

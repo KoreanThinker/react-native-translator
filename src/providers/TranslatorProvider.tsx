@@ -1,5 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {createContext, useCallback, useMemo, useState} from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import WebView from 'react-native-webview';
 import {View} from 'react-native';
 import {LanguageCode, USER_AGENT} from '..';
@@ -26,12 +32,11 @@ export const TranslatorContext = createContext<TranslatorContextType>(
   {} as any,
 );
 
-let res: any = () => {};
-
 const TranslatorProvider: React.FC = ({children}) => {
   const [from, setFrom] = useState<LanguageCode>();
   const [to, setTo] = useState<LanguageCode>();
   const [value, setValue] = useState('');
+  const res = useRef<(result: string) => void>(null);
 
   const translate = useCallback(
     async (
@@ -45,7 +50,8 @@ const TranslatorProvider: React.FC = ({children}) => {
         setTo(_to);
         setValue(_value);
         const result: string = await new Promise((_res, reject) => {
-          res = _res;
+          //@ts-ignore
+          res.current = _res;
           setTimeout(() => reject('timeout'), timeout);
         });
         return result;
@@ -81,7 +87,7 @@ const TranslatorProvider: React.FC = ({children}) => {
             if (result === LOADING_MESSSAGE) {
               return;
             }
-            res(result);
+            res.current && res.current(result);
           }}
         />
       </View>

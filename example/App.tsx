@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, View, TextInput, Button} from 'react-native';
+import {
+  Text,
+  View,
+  TextInput,
+  Button,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import Translator, {
   TranslatorProvider,
   useTranslator,
@@ -31,13 +38,21 @@ const Component = () => {
 
 const Hook = () => {
   const {translate} = useTranslator();
+  const [loading, setLoading] = useState(false);
 
   const [value, setValue] = useState('');
   const [result, setResult] = useState('');
 
   const onTranslate = async () => {
-    const _result = await translate('en', 'ko', value);
-    setResult(_result);
+    try {
+      setLoading(true);
+      const _result = await translate('en', 'ko', value);
+      setResult(_result);
+    } catch (error) {
+      Alert.alert('Translate error!');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,7 +65,11 @@ const Hook = () => {
         onChangeText={(t) => setValue(t)}
       />
       <Text style={{fontSize: 24}}>result (ko) : {result}</Text>
-      <Button title="translate" onPress={onTranslate} />
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <Button title="translate" onPress={onTranslate} />
+      )}
     </View>
   );
 };

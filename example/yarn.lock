@@ -5510,10 +5510,10 @@ react-native-codegen@^0.0.8:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
-react-native-translator@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-translator/-/react-native-translator-0.0.1.tgz#e7ee2c7c9436be1a1721913bc3bdfdb01d88b796"
-  integrity sha512-yYTIO5qf+6lo/Hi6FZogVWvY8K6LxzPm6oChXz7Bix+1LU1IxKgIGXQ+JX/rhkrdZj7xjGT2T7cIGo5sr+iUqQ==
+react-native-translator@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-translator/-/react-native-translator-0.0.4.tgz#454d2c60d9db2131f38038e2442c7c428649c6bb"
+  integrity sha512-dG9QLMDSepT3hv4WbnjxeZmObwWCwUdPL8pAsfU95vXFB/wIWP0qXRidOxDp4bGA+vGiyrExQ5tPk4RL5+eB9Q==
 
 react-native-webview@^11.17.2:
   version "11.17.2"
