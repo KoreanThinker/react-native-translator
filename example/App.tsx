@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import {Text, View, TextInput, Button} from 'react-native';
-import Translator, {TranslatorProvider, useTranslator} from '../src';
+import Translator, {
+  TranslatorProvider,
+  useTranslator,
+} from 'react-native-translator';
 
 const Component = () => {
   const [value, setValue] = useState('');
@@ -33,7 +36,7 @@ const Hook = () => {
   const [result, setResult] = useState('');
 
   const onTranslate = async () => {
-    const _result = await translate('en', 'fr', value);
+    const _result = await translate('en', 'ko', value);
     setResult(_result);
   };
 
@@ -41,11 +44,12 @@ const Hook = () => {
     <View style={{marginTop: 24}}>
       <Text>Hook</Text>
       <TextInput
-        style={{fontSize: 24}}
+        placeholder="value (en)"
         value={value}
+        style={{fontSize: 24}}
         onChangeText={(t) => setValue(t)}
       />
-      <Text style={{fontSize: 24}}>{result}</Text>
+      <Text style={{fontSize: 24}}>result (ko) : {result}</Text>
       <Button title="translate" onPress={onTranslate} />
     </View>
   );

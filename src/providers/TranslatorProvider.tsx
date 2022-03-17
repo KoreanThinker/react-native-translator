@@ -40,14 +40,21 @@ const TranslatorProvider: React.FC = ({children}) => {
       _value: string,
       timeout = 5000,
     ) => {
-      setFrom(_from);
-      setTo(_to);
-      setValue(_value);
-      const result: string = await new Promise((_res, reject) => {
-        res = _res;
-        setTimeout(() => reject('timeout'), timeout);
-      });
-      return result;
+      try {
+        setFrom(_from);
+        setTo(_to);
+        setValue(_value);
+        const result: string = await new Promise((_res, reject) => {
+          res = _res;
+          setTimeout(() => reject('timeout'), timeout);
+        });
+        return result;
+      } catch (error) {
+        setFrom(undefined);
+        setTo(undefined);
+        setValue('');
+        throw error;
+      }
     },
     [],
   );
