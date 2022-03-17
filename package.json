@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/koreanthinker/react-native-instagram-like-image-cropper"
+    "url": "https://github.com/koreanthinker/react-native-translator"
   },
   "keywords": [
     "react-native-translator",
@@ -31,8 +31,10 @@
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react-native-webview": ">= 5.0.1"
+  },
   "devDependencies": {
-    "@react-native-community/image-editor": "2.3.0",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/react-native": "^0.67.2",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
@@ -43,6 +45,7 @@
     "prettier": "^2.5.1",
     "react": "17.0.2",
     "react-native": "0.67.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "react-native-webview": "^11.17.2"
   }
 }

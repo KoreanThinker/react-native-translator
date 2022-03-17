@@ -1,14 +1,42 @@
-import {StyleSheet, Text, View} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import {lang} from '..';
+import WebView from 'react-native-webview';
+import {View} from 'react-native';
 
-const Translator = () => {
+const USER_AGENT =
+  'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/4.0';
+const INJECT_JAVASCRIPT = `setInterval(() => {
+  var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
+  var doc = document.querySelector(selector)
+  window.ReactNativeWebView.postMessage(doc.innerText)
+}, 200)`;
+
+export interface TranslatorProps {
+  from: lang;
+  to: lang;
+  value: string;
+  onTranslated: (t: string) => void;
+}
+
+const Translator: React.FC<TranslatorProps> = (props) => {
+  const {from, to, value, onTranslated} = props;
+
   return (
-    <View>
-      <Text>Translator</Text>
+    <View style={{width: 0, height: 0}}>
+      <WebView
+        injectedJavaScript={INJECT_JAVASCRIPT}
+        userAgent={USER_AGENT}
+        source={{
+          uri: `https://translate.google.com/?sl=${from}&tl=${to}&text=${value}`,
+        }}
+        cacheEnabled={true}
+        onMessage={(event) => {
+          onTranslated(event.nativeEvent.data || '');
+        }}
+      />
     </View>
   );
 };
 
 export default Translator;
-
-const styles = StyleSheet.create({});

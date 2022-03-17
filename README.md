@@ -5,15 +5,29 @@ Free translate component & hook
 ## Preview
 
 ## Getting started
-### Install package
-`npm install react-native-translator --save`
-or
-`yarn add react-native-translator`
-### Add provider 
+
+#### First, Install package
+
+```bash
+yarn add react-native-translator react-native-webview
 ```
+
+#### Second, Pod intsall
+
+```bash
+cd ios && pod install
 ```
+
+#### Add provider
+
+```
+
+```
+
 ---
+
 ## Usage
+
 ### Component (Realtime)
 
 ```tsx
@@ -23,7 +37,7 @@ import Translator from 'react-native-translator';
 
 const App = () => {
   const [value, setValue] = useState('');
-  const [result, setReuslt] = useState('');
+  const [result, setResult] = useState('');
 
   return (
     <View>
@@ -31,7 +45,7 @@ const App = () => {
         from="en"
         to="fr"
         value={value}
-        onTranslate={(t) => setResult(t)}
+        onTranslated={(t) => setResult(t)}
       />
       <TextInput value={value} onChangeText={(t) => setValue(t)} />
       <Text>{result}</Text>
@@ -39,7 +53,9 @@ const App = () => {
   );
 };
 ```
+
 ### Hook
+
 ```tsx
 import React, {useState} from 'react';
 import {Text, View, TextInput, Button} from 'react-native';
@@ -49,7 +65,7 @@ const App = () => {
   const {translate} = useTranslator();
 
   const [value, setValue] = useState('');
-  const [result, setReuslt] = useState('');
+  const [result, setResult] = useState('');
 
   const onTranslate = async () => {
     const _result = await translate('en', 'fr', value);
