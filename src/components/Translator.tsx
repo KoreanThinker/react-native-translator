@@ -1,11 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {lang} from '..';
 import WebView from 'react-native-webview';
 import {View} from 'react-native';
+import {LanguageCode, USER_AGENT} from '..';
 
-const USER_AGENT =
-  'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/4.0';
 const INJECT_JAVASCRIPT = `setInterval(() => {
   var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
   var doc = document.querySelector(selector)
@@ -13,8 +11,8 @@ const INJECT_JAVASCRIPT = `setInterval(() => {
 }, 200)`;
 
 export interface TranslatorProps {
-  from: lang;
-  to: lang;
+  from: LanguageCode;
+  to: LanguageCode;
   value: string;
   onTranslated: (t: string) => void;
 }

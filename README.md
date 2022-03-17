@@ -1,4 +1,9 @@
-# react-native-translator
+# React Native Translator
+
+[![npm version](https://badge.fury.io/js/react-native-translator.svg)](https://www.npmjs.com/package/react-native-translator)
+[![License MIT](https://img.shields.io/github/license/KoreanThinker/react-native-translator?style=plat)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+![Stars](https://img.shields.io/github/stars/KoreanThinker/react-native-translator?style=social)
 
 Free google translate component & hook
 
@@ -20,17 +25,28 @@ yarn add react-native-translator react-native-webview
 cd ios && pod install
 ```
 
-#### Add provider
+#### Third, Add provider
 
-```
+```tsx
+// App.js
+import React from 'react';
+import {View} from 'react-native';
+import {TranslatorProvider} from 'react-native-translator' // here
 
+const App = () => {
+  return (
+    <TranslatorProvider> // here
+        <.../>
+    </TranslatorProvider> // here
+  );
+};
 ```
 
 ---
 
 ## Usage
 
-### Component (Realtime)
+### Use Component (real time)
 
 ```tsx
 import React, {useState} from 'react';
@@ -56,7 +72,7 @@ const App = () => {
 };
 ```
 
-### Hook
+### Use Hook (event)
 
 ```tsx
 import React, {useState} from 'react';
@@ -78,13 +94,20 @@ const App = () => {
     <View>
       <TextInput value={value} onChangeText={(t) => setValue(t)} />
       <Text>{result}</Text>
-      <Button onPress={onTranslate}>translate</Button>
+      <Button title="translate" onPress={onTranslate} />
     </View>
   );
 };
 ```
 
 ## Support languages
+
+```tsx
+// You can use like that
+import {LANGUAGE_CODES, LanguageCode} from 'react-native-translator';
+// LanguageCode = "af" | "ga" | "sq" | ...
+// LANGUAGE_CODES: LanguageCode[] = ["af", "ga", "sq", ...]
+```
 
 | Language Name       | Language Code |
 | ------------------- | ------------- |

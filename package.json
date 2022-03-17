@@ -1,7 +1,7 @@
 {
   "name": "react-native-translator",
   "title": "React Native Translator",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Free translate component & hook",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,7 @@
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
   "peerDependencies": {
-    "react-native-webview": ">= 5.0.1"
+    "react-native-webview": "*"
   },
   "devDependencies": {
     "@react-native-community/eslint-config": "^2.0.0",
