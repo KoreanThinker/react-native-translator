@@ -8,16 +8,13 @@ import React, {
 } from 'react';
 import WebView from 'react-native-webview';
 import {View} from 'react-native';
-import {LanguageCode, TranslatorType, USER_AGENT} from '..';
-
-const LOADING_MESSSAGE = '@L@O@A@D@I@N@G@';
-
-const INJECT_JAVASCRIPT = `setInterval(() => {
-  var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
-  var doc = document.querySelector(selector)
-  if(doc) window.ReactNativeWebView.postMessage(doc.innerText)
-  else window.ReactNativeWebView.postMessage('${LOADING_MESSSAGE}')
-}, 200)`;
+import {
+  INJECTED_JAVASCRIPTS,
+  LanguageCode,
+  LOADING_MESSSAGE,
+  TranslatorType,
+  USER_AGENT,
+} from '..';
 
 export type TranslatorContextType = {
   translate: <T extends TranslatorType = 'google'>(
@@ -89,21 +86,23 @@ const TranslatorProvider: React.FC = ({children}) => {
   return (
     <TranslatorContext.Provider value={contextValue}>
       <View style={{width: 0, height: 0}}>
-        <WebView
-          injectedJavaScript={INJECT_JAVASCRIPT}
-          userAgent={USER_AGENT}
-          source={{
-            uri: `https://translate.google.com/?sl=${from}&tl=${to}&text=${value}`,
-          }}
-          cacheEnabled={true}
-          onMessage={(event) => {
-            const result = event.nativeEvent.data;
-            if (result === LOADING_MESSSAGE) {
-              return;
-            }
-            res.current && res.current(result);
-          }}
-        />
+        {!!from && !!to && !!value && (
+          <WebView
+            injectedJavaScript={INJECTED_JAVASCRIPTS[type].hook}
+            userAgent={USER_AGENT}
+            source={{
+              uri: INJECTED_JAVASCRIPTS[type].url(from, to, value),
+            }}
+            cacheEnabled={true}
+            onMessage={(event) => {
+              const result = event.nativeEvent.data;
+              if (result === LOADING_MESSSAGE) {
+                return;
+              }
+              res.current && res.current(result);
+            }}
+          />
+        )}
       </View>
       {children}
     </TranslatorContext.Provider>
