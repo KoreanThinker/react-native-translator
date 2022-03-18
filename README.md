@@ -143,7 +143,7 @@ TRANSLATOR_TYPES = ["google", "papago", "kakao", ...]
 const googleLanguageCodes = LANGUAGE_CODES['google']; // ["af", "ga", "sq", ...]
 // convert code
 const convertedCode = languageCodeConverter('google', 'papago', 'ko');
-// code -> 'kr'
+// code -> 'kr' // if can not convertable return undifined
 ```
 
 | Language            | Google | Papago | Kakao |
