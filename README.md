@@ -3,15 +3,30 @@
 [![npm version](https://badge.fury.io/js/react-native-translator.svg)](https://www.npmjs.com/package/react-native-translator)
 [![License MIT](https://img.shields.io/github/license/KoreanThinker/react-native-translator?style=plat)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+[![Example](https://img.shields.io/badge/example-here!-blue)](https://github.com/krtk-dev/translators)
 ![Stars](https://img.shields.io/github/stars/KoreanThinker/react-native-translator?style=social)
-
-Free google translate component & hook
-
-> Never need api key, This library is Unlimited free
 
 ## Preview
 
-<img width="360" src="https://user-images.githubusercontent.com/48207131/158834248-05331dd0-d294-4041-9d7b-cb72b5e75737.gif" />
+## <img width="360" src="https://user-images.githubusercontent.com/48207131/158834248-05331dd0-d294-4041-9d7b-cb72b5e75737.gif" />
+
+---
+
+## Introduce
+
+Free translate component & hook
+
+> Never need api key, This library is Unlimited free
+
+---
+
+## Support translators
+
+- [Google](https://translate.google.com/)
+- [Papago](https://papago.naver.com/)
+- [Kakao](https://translate.kakao.com/)
+
+---
 
 ## Getting started
 
@@ -102,6 +117,8 @@ const App = () => {
 };
 ```
 
+---
+
 ## API
 
 ```ts
@@ -128,7 +145,9 @@ type TranslatorType = 'google' | 'kakao' | 'papago' | ...
 type LanguageCode<T extends TranslatorType> = 'af' | 'ga' | 'sq' | ...
 ```
 
-## Support languages & translators
+--
+
+## Support languages
 
 ```tsx
 // You can use like that
