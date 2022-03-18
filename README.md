@@ -7,6 +7,8 @@
 
 Free google translate component & hook
 
+> Never need api key, This library is Unlimited free
+
 ## Preview
 
 <img width="360" src="https://user-images.githubusercontent.com/48207131/158834248-05331dd0-d294-4041-9d7b-cb72b5e75737.gif" />
