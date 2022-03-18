@@ -1,7 +1,7 @@
 {
   "name": "react-native-translator",
   "title": "React Native Translator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Free translate component & hook",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -45,7 +45,7 @@
     "prettier": "^2.5.1",
     "react": "17.0.2",
     "react-native": "0.67.2",
-    "typescript": "^3.8.3",
-    "react-native-webview": "^11.17.2"
+    "react-native-webview": "^11.17.2",
+    "typescript": "^3.8.3"
   }
 }

@@ -23,6 +23,7 @@ const Component = () => {
         from="en"
         to="ko"
         value={value}
+        type="papago"
         onTranslated={(t) => setResult(t)}
       />
       <TextInput
@@ -46,7 +47,10 @@ const Hook = () => {
   const onTranslate = async () => {
     try {
       setLoading(true);
-      const _result = await translate('en', 'ko', value);
+      const _result = await translate('en', 'kr', value, {
+        type: 'kakao',
+        timeout: 10000,
+      });
       setResult(_result);
     } catch (error) {
       Alert.alert('Translate error!');
