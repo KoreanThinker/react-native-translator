@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import WebView from 'react-native-webview';
 import {View} from 'react-native';
-import {LanguageCode, USER_AGENT} from '..';
+import {LanguageCode, TranslatorType, USER_AGENT} from '..';
 
 const LOADING_MESSSAGE = '@L@O@A@D@I@N@G@';
 
@@ -20,11 +20,14 @@ const INJECT_JAVASCRIPT = `setInterval(() => {
 }, 200)`;
 
 export type TranslatorContextType = {
-  translate: (
-    from: LanguageCode,
-    to: LanguageCode,
+  translate: <T extends TranslatorType = 'google'>(
+    from: LanguageCode<T>,
+    to: LanguageCode<T>,
     value: string,
-    timeout?: number | undefined,
+    option?: {
+      type?: T;
+      timeout?: number;
+    },
   ) => Promise<string>;
 };
 
@@ -33,22 +36,31 @@ export const TranslatorContext = createContext<TranslatorContextType>(
 );
 
 const TranslatorProvider: React.FC = ({children}) => {
-  const [from, setFrom] = useState<LanguageCode>();
-  const [to, setTo] = useState<LanguageCode>();
+  const [type, setType] = useState<TranslatorType>('google');
+  const [from, setFrom] = useState<LanguageCode<typeof type>>();
+  const [to, setTo] = useState<LanguageCode<typeof type>>();
   const [value, setValue] = useState('');
   const res = useRef<(result: string) => void>(null);
 
   const translate = useCallback(
-    async (
-      _from: LanguageCode,
-      _to: LanguageCode,
+    async <T extends TranslatorType = 'google'>(
+      _from: LanguageCode<T>,
+      _to: LanguageCode<T>,
       _value: string,
-      timeout = 5000,
-    ) => {
+      {
+        //@ts-ignore
+        type: _type = 'google',
+        timeout = 5000,
+      }: {
+        type?: T;
+        timeout?: number;
+      },
+    ): Promise<string> => {
       try {
         setFrom(_from);
         setTo(_to);
         setValue(_value);
+        setType(_type);
         const result: string = await new Promise((_res, reject) => {
           //@ts-ignore
           res.current = _res;
@@ -59,6 +71,7 @@ const TranslatorProvider: React.FC = ({children}) => {
         setFrom(undefined);
         setTo(undefined);
         setValue('');
+        setType('google');
         throw error;
       }
     },
@@ -67,6 +80,7 @@ const TranslatorProvider: React.FC = ({children}) => {
 
   const contextValue = useMemo<TranslatorContextType>(
     () => ({
+      //@ts-ignore
       translate,
     }),
     [translate],

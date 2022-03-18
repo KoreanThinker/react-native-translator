@@ -106,93 +106,109 @@ const App = () => {
 
 ```ts
 // Component
-interface TranslatorProps {
-  from: LanguageCode;
-  to: LanguageCode;
+interface TranslatorProps<T extends TranslatorType = 'google'> {
+  from: LanguageCode<T>;
+  to: LanguageCode<T>;
   value: string;
+  type?: T; // default 'google'
   onTranslated: (t: string) => void;
 }
 // Hook
-translate: (
-  from: LanguageCode,
-  to: LanguageCode,
+type translate: <T extends TranslatorType = 'google'>(
+  from: LanguageCode<T>,
+  to: LanguageCode<T>,
   value: string,
-  timeout?: number | undefined,
+  option?: {
+    type?: T; // default 'google'
+    timeout?: number; // default 5000
+  },
 ) => Promise<string>;
+// etc
+type TranslatorType = 'google' | 'kakao' | 'papago' | ...
+type LanguageCode<T extends TranslatorType> = 'af' | 'ga' | 'sq' | ...
 ```
 
-## Support languages
+## Support languages & translators
 
 ```tsx
 // You can use like that
-import {LANGUAGE_CODES, LanguageCode} from 'react-native-translator';
-// LanguageCode = "af" | "ga" | "sq" | ...
-// LANGUAGE_CODES: LanguageCode[] = ["af", "ga", "sq", ...]
+import {
+  LANGUAGE_CODES,
+  TRANSLATOR_TYPES,
+  languageCodeConverter,
+} from 'react-native-translator';
+// translator types
+TRANSLATOR_TYPES = ["google", "papago", "kakao", ...]
+// language code
+const googleLanguageCodes = LANGUAGE_CODES['google']; // ["af", "ga", "sq", ...]
+// convert code
+const convertedCode = languageCodeConverter('google', 'papago', 'ko');
+// code -> 'kr'
 ```
 
-| Language Name       | Language Code |
-| ------------------- | ------------- |
-| Afrikaans           | af            |
-| Irish               | ga            |
-| Albanian            | sq            |
-| Italian             | it            |
-| Arabic              | ar            |
-| Japanese            | ja            |
-| Azerbaijani         | az            |
-| Kannada             | kn            |
-| Basque              | eu            |
-| Korean              | ko            |
-| Bengali             | bn            |
-| Latin               | la            |
-| Belarusian          | be            |
-| Latvian             | lv            |
-| Bulgarian           | bg            |
-| Lithuanian          | lt            |
-| Catalan             | ca            |
-| Macedonian          | mk            |
-| Chinese Simplified  | zh-CN         |
-| Malay               | ms            |
-| Chinese Traditional | zh-TW         |
-| Maltese             | mt            |
-| Croatian            | hr            |
-| Norwegian           | no            |
-| Czech               | cs            |
-| Persian             | fa            |
-| Danish              | da            |
-| Polish              | pl            |
-| Dutch               | nl            |
-| Portuguese          | pt            |
-| English             | en            |
-| Romanian            | ro            |
-| Esperanto           | eo            |
-| Russian             | ru            |
-| Estonian            | et            |
-| Serbian             | sr            |
-| Filipino            | tl            |
-| Slovak              | sk            |
-| Finnish             | fi            |
-| Slovenian           | sl            |
-| French              | fr            |
-| Spanish             | es            |
-| Galician            | gl            |
-| Swahili             | sw            |
-| Georgian            | ka            |
-| Swedish             | sv            |
-| German              | de            |
-| Tamil               | ta            |
-| Greek               | el            |
-| Telugu              | te            |
-| Gujarati            | gu            |
-| Thai                | th            |
-| Haitian Creole      | ht            |
-| Turkish             | tr            |
-| Hebrew              | iw            |
-| Ukrainian           | uk            |
-| Hindi               | hi            |
-| Urdu                | ur            |
-| Hungarian           | hu            |
-| Vietnamese          | vi            |
-| Icelandic           | is            |
-| Welsh               | cy            |
-| Indonesian          | id            |
-| Yiddish             | yi            |
+| Language Name       | Google |
+| ------------------- | ------ |
+| Afrikaans           | af     |
+| Irish               | ga     |
+| Albanian            | sq     |
+| Italian             | it     |
+| Arabic              | ar     |
+| Japanese            | ja     |
+| Azerbaijani         | az     |
+| Kannada             | kn     |
+| Basque              | eu     |
+| Korean              | ko     |
+| Bengali             | bn     |
+| Latin               | la     |
+| Belarusian          | be     |
+| Latvian             | lv     |
+| Bulgarian           | bg     |
+| Lithuanian          | lt     |
+| Catalan             | ca     |
+| Macedonian          | mk     |
+| Chinese Simplified  | zh-CN  |
+| Malay               | ms     |
+| Chinese Traditional | zh-TW  |
+| Maltese             | mt     |
+| Croatian            | hr     |
+| Norwegian           | no     |
+| Czech               | cs     |
+| Persian             | fa     |
+| Danish              | da     |
+| Polish              | pl     |
+| Dutch               | nl     |
+| Portuguese          | pt     |
+| English             | en     |
+| Romanian            | ro     |
+| Esperanto           | eo     |
+| Russian             | ru     |
+| Estonian            | et     |
+| Serbian             | sr     |
+| Filipino            | tl     |
+| Slovak              | sk     |
+| Finnish             | fi     |
+| Slovenian           | sl     |
+| French              | fr     |
+| Spanish             | es     |
+| Galician            | gl     |
+| Swahili             | sw     |
+| Georgian            | ka     |
+| Swedish             | sv     |
+| German              | de     |
+| Tamil               | ta     |
+| Greek               | el     |
+| Telugu              | te     |
+| Gujarati            | gu     |
+| Thai                | th     |
+| Haitian Creole      | ht     |
+| Turkish             | tr     |
+| Hebrew              | iw     |
+| Ukrainian           | uk     |
+| Hindi               | hi     |
+| Urdu                | ur     |
+| Hungarian           | hu     |
+| Vietnamese          | vi     |
+| Icelandic           | is     |
+| Welsh               | cy     |
+| Indonesian          | id     |
+| Yiddish             | yi     |

@@ -2,7 +2,7 @@
 import React from 'react';
 import WebView from 'react-native-webview';
 import {View} from 'react-native';
-import {LanguageCode, USER_AGENT} from '..';
+import {LanguageCode, TranslatorType, USER_AGENT} from '..';
 
 const INJECT_JAVASCRIPT = `setInterval(() => {
   var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
@@ -10,15 +10,19 @@ const INJECT_JAVASCRIPT = `setInterval(() => {
   window.ReactNativeWebView.postMessage(doc.innerText)
 }, 200)`;
 
-export interface TranslatorProps {
-  from: LanguageCode;
-  to: LanguageCode;
+export interface TranslatorProps<T extends TranslatorType> {
+  from: LanguageCode<T>;
+  to: LanguageCode<T>;
   value: string;
+  type?: T;
   onTranslated: (t: string) => void;
 }
 
-const Translator: React.FC<TranslatorProps> = (props) => {
-  const {from, to, value, onTranslated} = props;
+const Translator = <T extends TranslatorType = 'google'>(
+  props: TranslatorProps<T>,
+) => {
+  const {from, to, value, onTranslated, type} = props;
+  console.log(type);
 
   return (
     <View style={{width: 0, height: 0}}>
@@ -35,6 +39,10 @@ const Translator: React.FC<TranslatorProps> = (props) => {
       />
     </View>
   );
+};
+
+Translator.defaultProps = {
+  type: 'google',
 };
 
 export default Translator;

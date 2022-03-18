@@ -1,7 +1,7 @@
 {
   "name": "react-native-translator",
   "title": "React Native Translator",
-  "version": "1.0.0",
+  "version": "1.1.0-rc.0",
   "description": "Free translate component & hook",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "publish": "npm run build && npm publish ",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "repository": {
