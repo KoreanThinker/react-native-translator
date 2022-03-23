@@ -9,8 +9,8 @@
     "dist/"
   ],
   "scripts": {
-    "postinstall": "npm run build",
     "build": "tsc",
+    "prepare": "npm run build",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "repository": {
