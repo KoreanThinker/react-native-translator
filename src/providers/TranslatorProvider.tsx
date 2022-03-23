@@ -13,7 +13,6 @@ import {
   LanguageCode,
   LOADING_MESSSAGE,
   TranslatorType,
-  USER_AGENT,
 } from '..';
 
 export type TranslatorContextType = {
@@ -89,7 +88,6 @@ const TranslatorProvider: React.FC = ({children}) => {
         {!!from && !!to && !!value && (
           <WebView
             injectedJavaScript={INJECTED_JAVASCRIPTS[type].hook}
-            userAgent={USER_AGENT}
             source={{
               uri: INJECTED_JAVASCRIPTS[type].url(from, to, value),
             }}
