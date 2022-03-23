@@ -9,6 +9,7 @@
     "dist/"
   ],
   "scripts": {
+    "postinstall": "build",
     "build": "tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
