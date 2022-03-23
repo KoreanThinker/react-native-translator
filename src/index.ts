@@ -163,7 +163,7 @@ export const INJECTED_JAVASCRIPTS: Record<
     setTimeout(() => {
       // ---- for Swedish cache policy ---- //
       document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
-    }, 1000)
+    }, 500)
     setInterval(() => {
       var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
       var doc = document.querySelector(selector)
@@ -174,7 +174,7 @@ export const INJECTED_JAVASCRIPTS: Record<
     setTimeout(() => {
       // ---- for Swedish cache policy ---- //
       document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
-    }, 1000)
+    }, 500)
     setInterval(() => {
       var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
       var doc = document.querySelector(selector)
