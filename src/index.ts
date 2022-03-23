@@ -163,11 +163,19 @@ export const INJECTED_JAVASCRIPTS: Record<
     url: (from, to, value) =>
       `https://translate.google.com/?sl=${from}&tl=${to}&text=${value}`,
     component: `setInterval(() => {
+      // ---- for Swedish cache policy ---- //
+      var cachePolicyBtnSelector = 'body > c-wiz > div > div > div > div > div > div > form > div > div > button'
+      document.querySelector(cachePolicyBtnSelector)?.click()
+      // ------------------------------ //
       var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
       var doc = document.querySelector(selector)
       window.ReactNativeWebView.postMessage(doc.innerText)
     }, 200)`,
     hook: `setInterval(() => {
+      // ---- for Swedish cache policy ---- //
+      var cachePolicyBtnSelector = 'body > c-wiz > div > div > div > div > div > div > form > div > div > button'
+      document.querySelector(cachePolicyBtnSelector)?.click()
+      // ------------------------------ //
       var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
       var doc = document.querySelector(selector)
       if(doc) window.ReactNativeWebView.postMessage(doc.innerText)
