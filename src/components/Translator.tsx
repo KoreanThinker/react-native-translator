@@ -2,12 +2,7 @@
 import React from 'react';
 import WebView from 'react-native-webview';
 import {View} from 'react-native';
-import {
-  INJECTED_JAVASCRIPTS,
-  LanguageCode,
-  TranslatorType,
-  USER_AGENT,
-} from '..';
+import {INJECTED_JAVASCRIPTS, LanguageCode, TranslatorType} from '..';
 
 export interface TranslatorProps<T extends TranslatorType> {
   from: LanguageCode<T>;
@@ -26,7 +21,6 @@ const Translator = <T extends TranslatorType = 'google'>(
     <View style={{width: 0, height: 0}}>
       <WebView
         injectedJavaScript={INJECTED_JAVASCRIPTS[type].component}
-        userAgent={USER_AGENT}
         source={{
           uri: INJECTED_JAVASCRIPTS[type].url(from, to, value),
         }}

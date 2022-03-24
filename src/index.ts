@@ -1,9 +1,6 @@
 import Translator from './components/Translator';
 export default Translator;
 
-export const USER_AGENT =
-  'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/4.0';
-
 export {default as useTranslator} from './hooks/useTranslator';
 export {default as TranslatorProvider} from './providers/TranslatorProvider';
 export {default as languageCodeConverter} from './utils/languageCodeConverter';
@@ -162,17 +159,30 @@ export const INJECTED_JAVASCRIPTS: Record<
   google: {
     url: (from, to, value) =>
       `https://translate.google.com/?sl=${from}&tl=${to}&text=${value}`,
-    component: `setInterval(() => {
+    component: `
+    setTimeout(() => {
+      // ---- for EU cache policy ---- //
+      // https://github.com/KoreanThinker/react-native-translator/issues/3#issuecomment-1077408850
+      document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
+    }, 500)
+    setInterval(() => {
       var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
       var doc = document.querySelector(selector)
       window.ReactNativeWebView.postMessage(doc.innerText)
-    }, 200)`,
-    hook: `setInterval(() => {
+    }, 200)
+    `,
+    hook: `
+    setTimeout(() => {
+      // ---- for EU cache policy ---- //
+      document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
+    }, 500)
+    setInterval(() => {
       var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
       var doc = document.querySelector(selector)
       if(doc) window.ReactNativeWebView.postMessage(doc.innerText)
       else window.ReactNativeWebView.postMessage('${LOADING_MESSSAGE}')
-  }, 200)`,
+    }, 200)
+  `,
   },
 };
 
