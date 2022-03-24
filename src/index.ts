@@ -161,7 +161,8 @@ export const INJECTED_JAVASCRIPTS: Record<
       `https://translate.google.com/?sl=${from}&tl=${to}&text=${value}`,
     component: `
     setTimeout(() => {
-      // ---- for Swedish cache policy ---- //
+      // ---- for EU cache policy ---- //
+      // https://github.com/KoreanThinker/react-native-translator/issues/3#issuecomment-1077408850
       document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
     }, 500)
     setInterval(() => {
@@ -172,7 +173,7 @@ export const INJECTED_JAVASCRIPTS: Record<
     `,
     hook: `
     setTimeout(() => {
-      // ---- for Swedish cache policy ---- //
+      // ---- for EU cache policy ---- //
       document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
     }, 500)
     setInterval(() => {
