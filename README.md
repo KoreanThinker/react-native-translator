@@ -1,6 +1,7 @@
 # React Native Translator
 
 [![npm version](https://badge.fury.io/js/react-native-translator.svg)](https://www.npmjs.com/package/react-native-translator)
+[![npm download](https://img.shields.io/npm/dt/react-native-translator)](https://www.npmjs.com/package/react-native-translator)
 [![License MIT](https://img.shields.io/github/license/KoreanThinker/react-native-translator?style=plat)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 [![Example](https://img.shields.io/badge/example-here!-blue)](https://github.com/krtk-dev/translators)
