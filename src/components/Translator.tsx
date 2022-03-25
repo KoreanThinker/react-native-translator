@@ -21,6 +21,7 @@ const Translator = <T extends TranslatorType = 'google'>(
     <View style={{width: 0, height: 0}}>
       <WebView
         injectedJavaScript={INJECTED_JAVASCRIPTS[type].component}
+        userAgent={INJECTED_JAVASCRIPTS[type].userAgent}
         source={{
           uri: INJECTED_JAVASCRIPTS[type].url(from, to, value),
         }}

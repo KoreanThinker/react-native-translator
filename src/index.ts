@@ -116,6 +116,7 @@ export const INJECTED_JAVASCRIPTS: Record<
   TranslatorType,
   {
     url: (from: string, to: string, value: string) => string;
+    userAgent: string | undefined;
     component: string;
     hook: string;
   }
@@ -123,6 +124,8 @@ export const INJECTED_JAVASCRIPTS: Record<
   papago: {
     url: (from, to, value) =>
       `https://papago.naver.com/?sk=${from}&tk=${to}&hn=0&st=${value}`,
+    userAgent:
+      'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/4.0',
     component: `setInterval(() => {
       var doc = document.querySelector('#txtTarget > span')
       window.ReactNativeWebView.postMessage(doc.innerHTML)
@@ -136,6 +139,8 @@ export const INJECTED_JAVASCRIPTS: Record<
   kakao: {
     url: (from, to, value) =>
       `https://translate.kakao.com/?lang=${from}${to}&q=${value}`,
+    userAgent:
+      'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/4.0',
     component: `setInterval(() => {
       var doc = document.querySelector('#result')
       var kakao = ''
@@ -159,6 +164,7 @@ export const INJECTED_JAVASCRIPTS: Record<
   google: {
     url: (from, to, value) =>
       `https://translate.google.com/?sl=${from}&tl=${to}&text=${value}`,
+    userAgent: undefined,
     component: `
     setTimeout(() => {
       // ---- for EU cache policy ---- //

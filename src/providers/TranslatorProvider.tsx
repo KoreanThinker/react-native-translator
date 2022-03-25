@@ -88,6 +88,7 @@ const TranslatorProvider: React.FC = ({children}) => {
         {!!from && !!to && !!value && (
           <WebView
             injectedJavaScript={INJECTED_JAVASCRIPTS[type].hook}
+            userAgent={INJECTED_JAVASCRIPTS[type].userAgent}
             source={{
               uri: INJECTED_JAVASCRIPTS[type].url(from, to, value),
             }}
