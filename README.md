@@ -63,13 +63,12 @@ const App = () => {
 
 ---
 
-## Usage
+## API
 
-### Use Component (real time)
+### `Translator` ( Real-time translate )
 
 ```tsx
-import React, {useState} from 'react';
-import {Text, View, TextInput} from 'react-native';
+// Usage
 import Translator from 'react-native-translator';
 
 const App = () => {
@@ -91,11 +90,18 @@ const App = () => {
 };
 ```
 
-### Use Hook (event)
+| Props        | Type                               | Default value | Required |
+| ------------ | ---------------------------------- | ------------- | -------- |
+| from         | [LanguageCode](#support-languages) |               | ✅       |
+| to           | [LanguageCode](#support-languages) |               | ✅       |
+| value        | string                             |               | ✅       |
+| type         | [TranslatorType](#translatortype)  | 'google'      |          |
+| onTranslated | `(result: string) => void`         |               | ✅       |
+
+### `useTranslator`
 
 ```tsx
-import React, {useState} from 'react';
-import {Text, View, TextInput, Button} from 'react-native';
+// Usage
 import {useTranslator} from 'react-native-translator';
 
 const App = () => {
@@ -119,53 +125,57 @@ const App = () => {
 };
 ```
 
----
-
-## API
+#### `translate`
 
 ```ts
-// Component
-interface TranslatorProps<T extends TranslatorType = 'google'> {
-  from: LanguageCode<T>;
-  to: LanguageCode<T>;
-  value: string;
-  type?: T; // default 'google'
-  onTranslated: (t: string) => void;
-}
-// Hook
-type translate: <T extends TranslatorType = 'google'>(
-  from: LanguageCode<T>,
-  to: LanguageCode<T>,
-  value: string,
-  option?: {
-    type?: T; // default 'google'
-    timeout?: number; // default 5000
-  },
-) => Promise<string>;
-// etc
-type TranslatorType = 'google' | 'kakao' | 'papago' | ...
-type LanguageCode<T extends TranslatorType> = 'af' | 'ga' | 'sq' | ...
+// const {translate} = useTranslator();
+type translate: <T extends TranslatorType>(/* check follow param table */) => Promise<string>;
 ```
 
---
+| param  | Type                                                         | Default value                   | Required |
+| ------ | ------------------------------------------------------------ | ------------------------------- | -------- |
+| from   | [LanguageCode](#support-languages)                           |                                 | ✅       |
+| to     | [LanguageCode](#support-languages)                           |                                 | ✅       |
+| value  | string                                                       |                                 | ✅       |
+| option | {type?: [TranslatorType](#translatortype), timeout?: number} | {type: 'google', timeout: 5000} |          |
 
-## Support languages
+### `languageCodeConverter`
+
+> ❗️ If conversion is not possible, return undefined.
+
+```ts
+import {languageCodeConverter} from 'react-native-translator';
+// google language code convert to kakao language code
+languageCodeConverter('google', 'kakao', 'ko'); // kr
+```
+
+### `TranslatorType`
+
+```ts
+type TranslatorType = 'google' | 'kakao' | 'papago';
+```
+
+### `LanguageCode`
+
+```ts
+type LanguageCode<T extends TranslatorType> ...
+// Usage
+type GoogleLanguageCode = LanguageCode<'google'>;
+```
+
+### `VALUES`
 
 ```tsx
-// You can use like that
-import {
-  LANGUAGE_CODES,
-  TRANSLATOR_TYPES,
-  languageCodeConverter,
-} from 'react-native-translator';
+import {LANGUAGE_CODES, TRANSLATOR_TYPES} from 'react-native-translator';
 // translator types
-TRANSLATOR_TYPES = ["google", "papago", "kakao", ...]
+TRANSLATOR_TYPES; // ["google", "papago", "kakao", ...]
 // language code
-const googleLanguageCodes = LANGUAGE_CODES['google']; // ["af", "ga", "sq", ...]
-// convert code
-const convertedCode = languageCodeConverter('google', 'papago', 'ko');
-// code -> 'kr' // if can not convertable return undifined
+LANGUAGE_CODES['google']; // ["af", "ga", "sq", ...]
 ```
+
+---
+
+## Support languages
 
 | Language            | Google | Papago | Kakao |
 | ------------------- | ------ | ------ | ----- |
