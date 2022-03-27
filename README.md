@@ -48,8 +48,7 @@ cd ios && pod install
 
 ```tsx
 // App.js
-import React from 'react';
-import {View} from 'react-native';
+...
 import {TranslatorProvider} from 'react-native-translator' // here
 
 const App = () => {
