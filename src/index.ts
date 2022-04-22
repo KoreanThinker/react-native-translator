@@ -172,7 +172,7 @@ export const INJECTED_JAVASCRIPTS: Record<
       document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
     }, 500)
     setInterval(() => {
-      var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
+      var selector = 'span[data-language-for-alternatives] > span'
       var doc = document.querySelector(selector)
       window.ReactNativeWebView.postMessage(doc.innerText)
     }, 200)
@@ -183,7 +183,7 @@ export const INJECTED_JAVASCRIPTS: Record<
       document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
     }, 500)
     setInterval(() => {
-      var selector = 'body > c-wiz > div > div:nth-child(2) > c-wiz > div:nth-child(2) > c-wiz > div > div:nth-child(2) > div:nth-child(3) > c-wiz:nth-child(2) > div:nth-child(7) > div > div > span > span > span'
+      var selector = 'span[data-language-for-alternatives] > span'
       var doc = document.querySelector(selector)
       if(doc) window.ReactNativeWebView.postMessage(doc.innerText)
       else window.ReactNativeWebView.postMessage('${LOADING_MESSSAGE}')
