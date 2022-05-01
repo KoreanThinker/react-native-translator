@@ -169,7 +169,7 @@ export const INJECTED_JAVASCRIPTS: Record<
     setTimeout(() => {
       // ---- for EU cache policy ---- //
       // https://github.com/KoreanThinker/react-native-translator/issues/3#issuecomment-1077408850
-      document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
+      document.querySelectorAll("button")[1].click()
     }, 500)
     setInterval(() => {
       var selector = 'span[data-language-for-alternatives] > span'
@@ -180,7 +180,7 @@ export const INJECTED_JAVASCRIPTS: Record<
     hook: `
     setTimeout(() => {
       // ---- for EU cache policy ---- //
-      document.querySelector("body > c-wiz > div > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > form > div > div > button").click()
+      document.querySelectorAll("button")[1].click()
     }, 500)
     setInterval(() => {
       var selector = 'span[data-language-for-alternatives] > span'
