@@ -123,7 +123,9 @@ export const INJECTED_JAVASCRIPTS: Record<
 > = {
   papago: {
     url: (from, to, value) =>
-      `https://papago.naver.com/?sk=${from}&tk=${to}&hn=0&st=${value}`,
+      `https://papago.naver.com/?sk=${from}&tk=${to}&hn=0&st=${encodeURI(
+        value,
+      )}`,
     userAgent:
       'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/4.0',
     component: `setInterval(() => {
@@ -138,7 +140,7 @@ export const INJECTED_JAVASCRIPTS: Record<
   },
   kakao: {
     url: (from, to, value) =>
-      `https://translate.kakao.com/?lang=${from}${to}&q=${value}`,
+      `https://translate.kakao.com/?lang=${from}${to}&q=${encodeURI(value)}`,
     userAgent:
       'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/4.0',
     component: `setInterval(() => {
@@ -163,7 +165,9 @@ export const INJECTED_JAVASCRIPTS: Record<
   },
   google: {
     url: (from, to, value) =>
-      `https://translate.google.com/?sl=${from}&tl=${to}&text=${value}`,
+      `https://translate.google.com/?sl=${from}&tl=${to}&text=${encodeURI(
+        value,
+      )}`,
     userAgent: undefined,
     component: `
     setTimeout(() => {
