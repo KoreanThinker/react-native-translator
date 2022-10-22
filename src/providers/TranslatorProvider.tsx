@@ -12,12 +12,13 @@ import {
   INJECTED_JAVASCRIPTS,
   LanguageCode,
   LOADING_MESSSAGE,
+  SourceLanguageCode,
   TranslatorType,
 } from '..';
 
 export type TranslatorContextType = {
   translate: <T extends TranslatorType = 'google'>(
-    from: LanguageCode<T>,
+    from: SourceLanguageCode<T>,
     to: LanguageCode<T>,
     value: string,
     option?: {
@@ -33,14 +34,14 @@ export const TranslatorContext = createContext<TranslatorContextType>(
 
 const TranslatorProvider: React.FC = ({children}) => {
   const [type, setType] = useState<TranslatorType>('google');
-  const [from, setFrom] = useState<LanguageCode<typeof type>>();
+  const [from, setFrom] = useState<SourceLanguageCode<typeof type>>();
   const [to, setTo] = useState<LanguageCode<typeof type>>();
   const [value, setValue] = useState('');
   const res = useRef<(result: string) => void>(null);
 
   const translate = useCallback(
     async <T extends TranslatorType = 'google'>(
-      _from: LanguageCode<T>,
+      _from: SourceLanguageCode<T>,
       _to: LanguageCode<T>,
       _value: string,
       {
