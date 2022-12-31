@@ -193,9 +193,19 @@ export const INJECTED_JAVASCRIPTS: Record<
 };
 
 type ValueOf<T> = T[keyof T];
-export type LanguageCode<T extends TranslatorType> = ValueOf<
+
+type SpecifiedLanguageCode<T extends TranslatorType> = ValueOf<
   Pick<typeof LANGUAGE_CODES, T>
 >[number];
+
+export type LanguageCode<T extends TranslatorType> = SpecifiedLanguageCode<T>;
+
+type AutoDetectableLanguage = 'google' | 'papago';
+
+export type SourceLanguageCode<T extends TranslatorType> =
+  T extends AutoDetectableLanguage
+    ? SpecifiedLanguageCode<T> | 'auto'
+    : SpecifiedLanguageCode<T>;
 
 // Translator type
 export type TranslatorType = keyof typeof LANGUAGE_CODES;

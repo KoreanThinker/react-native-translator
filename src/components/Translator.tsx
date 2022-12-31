@@ -2,10 +2,15 @@
 import React from 'react';
 import WebView from 'react-native-webview';
 import {View} from 'react-native';
-import {INJECTED_JAVASCRIPTS, LanguageCode, TranslatorType} from '..';
+import {
+  INJECTED_JAVASCRIPTS,
+  LanguageCode,
+  SourceLanguageCode,
+  TranslatorType,
+} from '..';
 
 export interface TranslatorProps<T extends TranslatorType> {
-  from: LanguageCode<T>;
+  from: SourceLanguageCode<T>;
   to: LanguageCode<T>;
   value: string;
   type?: T;
