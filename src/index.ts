@@ -173,10 +173,11 @@ export const INJECTED_JAVASCRIPTS: Record<
     setTimeout(() => {
       // ---- for EU cache policy ---- //
       // https://github.com/KoreanThinker/react-native-translator/issues/3#issuecomment-1077408850
-      document.querySelectorAll("button")[1].click()
+      // TODO remove if error again
+      // document.querySelectorAll("button")[1].click()
     }, 500)
     setInterval(() => {
-      var selector = 'span[data-language-for-alternatives] > span'
+      var selector = 'c-wiz[role] > div > div[jsaction] > div > div'
       var doc = document.querySelector(selector)
       window.ReactNativeWebView.postMessage(doc.innerText)
     }, 200)
@@ -184,10 +185,11 @@ export const INJECTED_JAVASCRIPTS: Record<
     hook: `
     setTimeout(() => {
       // ---- for EU cache policy ---- //
-      document.querySelectorAll("button")[1].click()
+      // TODO remove if error again
+      // document.querySelectorAll("button")[1].click()
     }, 500)
     setInterval(() => {
-      var selector = 'span[data-language-for-alternatives] > span'
+      var selector = 'c-wiz[role] > div > div[jsaction] > div > div'
       var doc = document.querySelector(selector)
       if(doc) window.ReactNativeWebView.postMessage(doc.innerText)
       else window.ReactNativeWebView.postMessage('${LOADING_MESSSAGE}')
