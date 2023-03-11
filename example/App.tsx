@@ -24,13 +24,13 @@ const Component = () => {
         to="ko"
         value={value}
         type="papago"
-        onTranslated={(t) => setResult(t)}
+        onTranslated={t => setResult(t)}
       />
       <TextInput
         placeholder="value (en)"
         value={value}
         style={{fontSize: 24}}
-        onChangeText={(t) => setValue(t)}
+        onChangeText={t => setValue(t)}
       />
       <Text style={{fontSize: 24}}>result (ko) : {result}</Text>
     </View>
@@ -66,7 +66,7 @@ const Hook = () => {
         placeholder="value (en)"
         value={value}
         style={{fontSize: 24}}
-        onChangeText={(t) => setValue(t)}
+        onChangeText={t => setValue(t)}
       />
       <Text style={{fontSize: 24}}>result (ko) : {result}</Text>
       {loading ? (
@@ -81,7 +81,13 @@ const Hook = () => {
 const App = () => {
   return (
     <TranslatorProvider>
-      <View style={{flex: 1, paddingVertical: 100, paddingHorizontal: 20}}>
+      <View
+        style={{
+          flex: 1,
+          paddingVertical: 100,
+          paddingHorizontal: 20,
+          backgroundColor: '#fff',
+        }}>
         <Component />
         <Hook />
       </View>
