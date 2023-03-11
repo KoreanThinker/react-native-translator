@@ -176,7 +176,7 @@ export const INJECTED_JAVASCRIPTS: Record<
       document.querySelectorAll("button")[1].click()
     }, 500)
     setInterval(() => {
-      var selector = 'span[data-language-for-alternatives] > span'
+      var selector = 'c-wiz[role] > div > div[jsaction] > div > div'
       var doc = document.querySelector(selector)
       window.ReactNativeWebView.postMessage(doc.innerText)
     }, 200)
@@ -187,7 +187,7 @@ export const INJECTED_JAVASCRIPTS: Record<
       document.querySelectorAll("button")[1].click()
     }, 500)
     setInterval(() => {
-      var selector = 'span[data-language-for-alternatives] > span'
+      var selector = 'c-wiz[role] > div > div[jsaction] > div > div'
       var doc = document.querySelector(selector)
       if(doc) window.ReactNativeWebView.postMessage(doc.innerText)
       else window.ReactNativeWebView.postMessage('${LOADING_MESSSAGE}')
