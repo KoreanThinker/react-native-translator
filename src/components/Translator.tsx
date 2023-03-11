@@ -31,7 +31,7 @@ const Translator = <T extends TranslatorType = 'google'>(
           uri: INJECTED_JAVASCRIPTS[type].url(from, to, value),
         }}
         cacheEnabled={true}
-        onMessage={(event) => {
+        onMessage={event => {
           onTranslated(event.nativeEvent.data || '');
         }}
       />

@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {
   createContext,
   useCallback,
@@ -32,7 +31,9 @@ export const TranslatorContext = createContext<TranslatorContextType>(
   {} as any,
 );
 
-const TranslatorProvider: React.FC = ({children}) => {
+const TranslatorProvider: React.FC<{children: React.ReactNode}> = ({
+  children,
+}) => {
   const [type, setType] = useState<TranslatorType>('google');
   const [from, setFrom] = useState<SourceLanguageCode<typeof type>>();
   const [to, setTo] = useState<LanguageCode<typeof type>>();
@@ -94,7 +95,7 @@ const TranslatorProvider: React.FC = ({children}) => {
               uri: INJECTED_JAVASCRIPTS[type].url(from, to, value),
             }}
             cacheEnabled={true}
-            onMessage={(event) => {
+            onMessage={event => {
               const result = event.nativeEvent.data;
               if (result === LOADING_MESSSAGE) {
                 return;

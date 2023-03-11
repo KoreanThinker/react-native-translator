@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint .",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,7 @@
   ],
   "author": {
     "name": "KoreanThinker",
-    "email": "coderhyun476@gmail.com"
+    "email": "koreanthinker@gmail.com"
   },
   "license": "MIT",
   "licenseFilename": "LICENSE",
@@ -36,17 +37,23 @@
     "react-native-webview": "*"
   },
   "devDependencies": {
-    "@react-native-community/eslint-config": "^2.0.0",
-    "@types/react-native": "^0.67.2",
-    "@typescript-eslint/eslint-plugin": "^5.7.0",
-    "@typescript-eslint/parser": "^5.7.0",
-    "eslint": "^7.14.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.5.1",
-    "react": "17.0.2",
-    "react-native": "0.67.2",
-    "react-native-webview": "^11.17.2",
-    "typescript": "^3.8.3"
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
+    "@react-native-community/eslint-config": "^3.2.0",
+    "@tsconfig/react-native": "^2.0.2",
+    "@types/jest": "^29.2.1",
+    "@types/react": "^18.0.24",
+    "@types/react-test-renderer": "^18.0.0",
+    "babel-jest": "^29.2.1",
+    "eslint": "^8.19.0",
+    "jest": "^29.2.1",
+    "metro-react-native-babel-preset": "0.73.8",
+    "prettier": "^2.4.1",
+    "react": "18.2.0",
+    "react-native": "0.71.4",
+    "react-native-webview": "^11.26.1",
+    "react-test-renderer": "18.2.0",
+    "typescript": "4.8.4"
   }
 }
