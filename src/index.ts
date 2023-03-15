@@ -175,6 +175,7 @@ export const INJECTED_JAVASCRIPTS: Record<
       // https://github.com/KoreanThinker/react-native-translator/issues/3#issuecomment-1077408850
       // TODO remove if error again
       // document.querySelectorAll("button")[1].click()
+       try{document.querySelector('button[aria-label="Accept all"]').click();}catch(e){}
     }, 500)
     setInterval(() => {
       var selector = 'c-wiz[role] > div > div[jsaction] > div > div'
@@ -187,6 +188,7 @@ export const INJECTED_JAVASCRIPTS: Record<
       // ---- for EU cache policy ---- //
       // TODO remove if error again
       // document.querySelectorAll("button")[1].click()
+        try{document.querySelector('button[aria-label="Accept all"]').click();}catch(e){}
     }, 500)
     setInterval(() => {
       var selector = 'c-wiz[role] > div > div[jsaction] > div > div'
