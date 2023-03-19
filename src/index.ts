@@ -173,10 +173,9 @@ export const INJECTED_JAVASCRIPTS: Record<
     setTimeout(() => {
       // ---- for EU cache policy ---- //
       // https://github.com/KoreanThinker/react-native-translator/issues/3#issuecomment-1077408850
-      // TODO remove if error again
-      // document.querySelectorAll("button")[1].click()
-       try{document.querySelector('button[aria-label="Accept all"]').click();}catch(e){}
+      try{document.querySelectorAll("div[data-is-touch-wrapper] > button")[1].click();}catch(e){}
     }, 500)
+    
     setInterval(() => {
       var selector = 'c-wiz[role] > div > div[jsaction] > div > div'
       var doc = document.querySelector(selector)
@@ -186,10 +185,9 @@ export const INJECTED_JAVASCRIPTS: Record<
     hook: `
     setTimeout(() => {
       // ---- for EU cache policy ---- //
-      // TODO remove if error again
-      // document.querySelectorAll("button")[1].click()
-        try{document.querySelector('button[aria-label="Accept all"]').click();}catch(e){}
+      try{document.querySelectorAll("div[data-is-touch-wrapper] > button")[1].click();}catch(e){}
     }, 500)
+
     setInterval(() => {
       var selector = 'c-wiz[role] > div > div[jsaction] > div > div'
       var doc = document.querySelector(selector)
