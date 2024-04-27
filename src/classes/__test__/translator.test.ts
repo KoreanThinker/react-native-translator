@@ -28,7 +28,22 @@ test('getInjectedJavascript', () => {
   });
 
   const injectedJavascript = translator.getInjectedJavascript();
-  expect(injectedJavascript).toMatchSnapshot();
+  expect(injectedJavascript).toBe(`
+      // if beforeTranslate is set, run it
+      console.log("beforeTranslate")
+
+      var selector = #result
+      // Wait for the element to be loaded
+      setInterval(() => {
+        var result = document.querySelector(selector)
+        if(result) {
+          window.ReactNativeWebView.postMessage(result.innerText)
+        }
+        else {
+          window.ReactNativeWebView.postMessage('@L@O@A@D@I@N@G@')
+        }
+      }, 200)
+    `);
   expect(injectedJavascript).toContain('console.log("beforeTranslate")'); // beforeTranslate
   expect(injectedJavascript).toContain('#result'); // selector
 });
