@@ -31,7 +31,7 @@ const Translator = <T extends TranslatorType = 'google'>(
         }}
         cacheEnabled={true}
         onMessage={event => {
-          onTranslated(event.nativeEvent.data || '');
+          onTranslated(event.nativeEvent.data ?? '');
         }}
       />
     </View>
