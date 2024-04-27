@@ -1,7 +1,22 @@
-import {LANGUAGE_TABLE} from '../languageCodeConverter';
+import {TranslatorType} from '../../constants/translatorTypes';
+import languageCodeConverter from '../languageCodeConverter';
 
-it('should have the correct language codes for each language', () => {
-  expect(LANGUAGE_TABLE.Afrikaans).toEqual({google: 'af'});
-  expect(LANGUAGE_TABLE.Irish).toEqual({google: 'ga'});
-  expect(LANGUAGE_TABLE.Albanian).toEqual({google: 'sq'});
+const testCases: [
+  TranslatorType,
+  TranslatorType,
+  string,
+  string | undefined,
+][] = [
+  ['google', 'papago', 'it', 'it'],
+  ['google', 'kakao', 'zh-CN', 'cn'],
+  ['papago', 'kakao', 'ko', 'kr'],
+  ['papago', 'google', 'ru', 'ru'],
+  ['kakao', 'papago', 'vi', 'vi'],
+  ['kakao', 'papago', 'cn', 'zh-CN'],
+  ['kakao', 'papago', 'nl', undefined],
+  ['google', 'papago', 'la', undefined],
+];
+
+test.each(testCases)('convert to ', (from, to, languageCode, expected) => {
+  expect(languageCodeConverter(from, to, languageCode)).toBe(expected);
 });
