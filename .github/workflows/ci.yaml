@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [synchronize, opened]
+    paths:
+      - '*'
+      - '!example/**'
+
+jobs:
+  test:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - run: yarn --pure-lockfile
+      - run: yarn lint
+      - run: yarn test-ci
+      - run: yarn build
