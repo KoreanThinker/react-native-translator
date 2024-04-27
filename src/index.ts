@@ -122,11 +122,6 @@ export const INJECTED_JAVASCRIPTS: Record<
     hook: string;
   }
 > = {
-
-
-
-
-  
   papago: {
     url: (from, to, value) =>
       `https://papago.naver.com/?sk=${from}&tk=${to}&hn=0&st=${encodeURI(
