@@ -35,6 +35,7 @@ const TranslatorProvider: React.FC<{children: React.ReactNode}> = ({
   children,
 }) => {
   const [type, setType] = useState<TranslatorType>('google');
+  console.log(type);
   const [from, setFrom] = useState<SourceLanguageCode<typeof type>>();
   const [to, setTo] = useState<LanguageCode<typeof type>>();
   const [value, setValue] = useState('');
