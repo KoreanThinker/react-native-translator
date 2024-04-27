@@ -1,8 +1,9 @@
 # React Native Translator
 
+[![CI](https://github.com/KoreanThinker/react-native-translator/actions/workflows/ci.yaml/badge.svg)](https://github.com/KoreanThinker/react-native-translator/actions/workflows/ci.yaml)
+[![codecov](https://codecov.io/gh/KoreanThinker/react-native-translator/graph/badge.svg?token=9T36KDBTMQ)](https://codecov.io/gh/KoreanThinker/react-native-translator)
 [![npm version](https://badge.fury.io/js/react-native-translator.svg)](https://www.npmjs.com/package/react-native-translator)
 [![npm download](https://img.shields.io/npm/dt/react-native-translator)](https://www.npmjs.com/package/react-native-translator)
-[![codecov](https://codecov.io/gh/KoreanThinker/react-native-translator/graph/badge.svg?token=9T36KDBTMQ)](https://codecov.io/gh/KoreanThinker/react-native-translator)
 [![License MIT](https://img.shields.io/github/license/KoreanThinker/react-native-translator?style=plat)](LICENSE)
 [![Example](https://img.shields.io/badge/example-here!-blue)](https://github.com/krtk-dev/translators)
 ![Stars](https://img.shields.io/github/stars/KoreanThinker/react-native-translator?style=social)
