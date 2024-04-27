@@ -1,6 +1,7 @@
 import google from '../translators/google/languageCode';
 import kakao from '../translators/kakao/languageCode';
 import papago from '../translators/papago/languageCode';
+import {TranslatorType} from './translatorTypes';
 
 const LANGUAGE_CODES = {papago, kakao, google} as const;
 type ValueOf<T> = T[keyof T];
@@ -17,7 +18,5 @@ export type SourceLanguageCode<T extends TranslatorType> =
   T extends AutoDetectableLanguage
     ? SpecifiedLanguageCode<T> | 'auto'
     : SpecifiedLanguageCode<T>;
-
-type TranslatorType = keyof typeof LANGUAGE_CODES;
 
 export default LANGUAGE_CODES;

@@ -9,4 +9,5 @@ const translators: Record<TranslatorType, Translator> = {
   papago: papagoTranslator,
   kakao: kakaoTranslator,
 };
+
 export default translators;
