@@ -13,6 +13,7 @@
     "prepare": "npm run build",
     "lint": "eslint src --fix",
     "test": "jest",
+    "lint-ci": "eslint src",
     "test-ci": "jest --coverage"
   },
   "repository": {
