@@ -12,7 +12,9 @@
     "build": "tsc",
     "prepare": "npm run build",
     "lint": "eslint src --fix",
-    "test": "jest"
+    "test": "jest",
+    "lint-ci": "eslint src",
+    "test-ci": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,8 @@
     "react-native-webview": "*"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-typescript": "^7.24.1",
     "@react-native-community/eslint-config": "^3.2.0",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.3.1",
