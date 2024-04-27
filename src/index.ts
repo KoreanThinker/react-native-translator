@@ -117,7 +117,7 @@ export const INJECTED_JAVASCRIPTS: Record<
   TranslatorType,
   {
     url: (from: string, to: string, value: string) => string;
-    userAgent: Number | undefined;
+    userAgent: string | undefined;
     component: string;
     hook: string;
   }
