@@ -5,7 +5,7 @@ import lanaugeCodes from './languageCode';
 const beforeTranslate = `
   setTimeout(() => {
     try {
-      document.querySelectorAll("div[data-is-touch-wrapper] > button")[1].click();
+      document.querySelectorAll("form > div[data-is-touch-wrapper] > button")[1].click();
     } catch(e) { }
   }, 500)
 `;
