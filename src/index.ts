@@ -1,15 +1,20 @@
 import Translator from './components/Translator';
-export default Translator;
 
-export {default as useTranslator} from './hooks/useTranslator';
-export {default as TranslatorProvider} from './providers/TranslatorProvider';
-export {default as languageCodeConverter} from './utils/languageCodeConverter';
-export {
-  default as LANGUAGE_CODES,
+import useTranslator from './hooks/useTranslator';
+import TranslatorProvider from './providers/TranslatorProvider';
+import languageCodeConverter from './utils/languageCodeConverter';
+import LANGUAGE_CODES, {
   LanguageCode,
   SourceLanguageCode,
 } from './constants/languageCode';
+import TRANSLATOR_TYPES, {TranslatorType} from './constants/translatorTypes';
+
 export {
-  default as TRANSLATOR_TYPES,
-  TranslatorType,
-} from './constants/translatorTypes';
+  useTranslator,
+  TranslatorProvider,
+  languageCodeConverter,
+  LANGUAGE_CODES,
+  TRANSLATOR_TYPES,
+};
+export type {LanguageCode, SourceLanguageCode, TranslatorType};
+export default Translator;

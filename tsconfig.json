@@ -1,17 +1,13 @@
 {
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"],
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/*.test.*"
+  ],
   "compilerOptions": {
-    "lib": ["es5", "es6", "esnext.asynciterable"],
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": false,
-    "jsx": "react",
-    "moduleResolution": "node",
-    "strict": true,
-    "target": "esnext",
-    "resolveJsonModule": true,
     "outDir": "./dist",
-    "declaration": true,
-    "skipLibCheck": true
+    "noEmit": false,
   }
 }

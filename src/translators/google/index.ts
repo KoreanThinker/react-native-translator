@@ -15,7 +15,9 @@ const googleTranslator = new Translator(
     lanaugeCodes,
     selector: 'c-wiz[role] > div > div[jsaction] > div > div',
     toUrl: (from, to, value) =>
-      `https://translate.google.com/?sl=${from}&tl=${to}&text=${encodeURI(value)}`,
+      `https://translate.google.com/?sl=${from}&tl=${to}&text=${encodeURI(
+        value,
+      )}`,
   },
   {beforeTranslate},
 );
