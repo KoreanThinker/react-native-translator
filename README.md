@@ -16,7 +16,7 @@
 
 ## Introduce
 
-Free translate component & hook
+Unofficial free translate component & hook
 
 > Never need api key, This library is Unlimited free
 
