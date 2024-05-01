@@ -32,7 +32,7 @@ test('getInjectedJavascript', () => {
       // if beforeTranslate is set, run it
       console.log("beforeTranslate")
 
-      var selector = #result
+      var selector = '#result'
       // Wait for the element to be loaded
       setInterval(() => {
         var result = document.querySelector(selector)

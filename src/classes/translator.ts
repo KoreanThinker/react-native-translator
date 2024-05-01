@@ -33,7 +33,7 @@ export default class Translator {
       // if beforeTranslate is set, run it
       ${this.beforeTranslate ?? ''}
 
-      var selector = ${this.selector}
+      var selector = '${this.selector}'
       // Wait for the element to be loaded
       setInterval(() => {
         var result = document.querySelector(selector)

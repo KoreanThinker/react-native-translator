@@ -49,8 +49,4 @@ const Translator = <T extends TranslatorType = 'google'>(
   );
 };
 
-Translator.defaultProps = {
-  type: 'google',
-};
-
 export default Translator;
