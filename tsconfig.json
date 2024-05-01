@@ -9,5 +9,6 @@
   "compilerOptions": {
     "outDir": "./dist",
     "noEmit": false,
+    "declaration": true
   }
 }

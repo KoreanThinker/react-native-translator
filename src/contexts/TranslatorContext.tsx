@@ -75,11 +75,9 @@ export function TranslatorProvider({children}: {children: React.ReactNode}) {
 
   return (
     <TranslatorContext.Provider value={{translate}}>
-      <View style={{width: 0, height: 0}}>
-        {tasks.map((task, index) => (
-          <TranslatorWrapper {...task} key={index} />
-        ))}
-      </View>
+      {tasks.map((task, index) => (
+        <TranslatorWrapper {...task} key={index} />
+      ))}
       {children}
     </TranslatorContext.Provider>
   );

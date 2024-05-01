@@ -37,13 +37,13 @@ function Translator<T extends TranslatorType = 'google'>(
   }, []);
 
   return (
-    <View style={{width: 0, height: 0}}>
+    <View style={{display: 'none'}}>
       <WebView
         injectedJavaScript={injectedJavascript}
         userAgent={userAgent}
         source={{uri}}
         onMessage={onMessage}
-        cacheEnabled={false}
+        cacheEnabled
       />
     </View>
   );

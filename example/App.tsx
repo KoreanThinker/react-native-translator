@@ -8,10 +8,7 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
-import Translator, {
-  TranslatorProvider,
-  useTranslator,
-} from 'react-native-translator';
+import Translator, {TranslatorProvider, useTranslator} from './dist';
 
 const Component = () => {
   const [value, setValue] = useState('');
