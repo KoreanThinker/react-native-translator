@@ -12,7 +12,7 @@
     "build": "tsc",
     "prepare": "npm run build",
     "lint": "eslint src --fix",
-    "test": "jest",
+    "test": "jest --watch",
     "lint-ci": "eslint src",
     "test-ci": "jest --coverage"
   },

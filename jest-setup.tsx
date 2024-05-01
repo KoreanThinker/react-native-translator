@@ -15,7 +15,7 @@ jest.mock('react-native-webview', () => {
       onMessage({nativeEvent: {data: LOADING_MESSSAGE}});
       setTimeout(() => {
         onMessage({nativeEvent: {data: '안녕'}});
-      }, 100);
+      }, 1000);
     }, []);
 
     return (

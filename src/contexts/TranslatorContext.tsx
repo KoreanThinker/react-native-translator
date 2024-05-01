@@ -1,6 +1,7 @@
 import React, {
   createContext,
   useCallback,
+  useContext,
   useMemo,
   useRef,
   useState,
@@ -8,7 +9,7 @@ import React, {
 import {View} from 'react-native';
 import Translator, {LanguageCode, SourceLanguageCode, TranslatorType} from '..';
 
-export type Translate = <T extends TranslatorType = 'google'>(
+type Translate = <T extends TranslatorType = 'google'>(
   from: SourceLanguageCode<T>,
   to: LanguageCode<T>,
   value: string,
@@ -17,15 +18,18 @@ export type Translate = <T extends TranslatorType = 'google'>(
     timeout?: number;
   },
 ) => Promise<string>;
-export type TranslatorContextType = {
+type TranslatorContextType = {
   translate: Translate;
 };
 
-export const TranslatorContext = createContext<TranslatorContextType>(
-  {} as any,
-);
+const TranslatorContext = createContext<TranslatorContextType>({} as any);
 
-const TranslatorProvider: React.FC<{children: React.ReactNode}> = ({
+export const useTranslator = () => {
+  const {translate} = useContext(TranslatorContext);
+  return {translate};
+};
+
+export const TranslatorProvider: React.FC<{children: React.ReactNode}> = ({
   children,
 }) => {
   const [type, setType] = useState<TranslatorType>('google');
@@ -42,35 +46,29 @@ const TranslatorProvider: React.FC<{children: React.ReactNode}> = ({
       setValue(_value);
       setType(_type);
 
-      try {
-        const result: string = await new Promise((_res, reject) => {
-          // @ts-ignore
-          callback.current = _res;
-          setTimeout(() => reject('translate timeout'), timeout);
-        });
-        return result;
-      } catch (error) {
-        setFrom(undefined);
-        setTo(undefined);
-        setValue('');
-        setType('google');
-        throw error;
-      }
+      return new Promise((_res, reject) => {
+        // @ts-ignore
+        callback.current = _res;
+        setTimeout(() => {
+          console.log('translate timeout');
+          setFrom(undefined);
+          setTo(undefined);
+          setValue('');
+          setType('google');
+          reject('translate timeout');
+        }, timeout);
+      });
     },
     [],
   );
 
   const contextValue = useMemo<TranslatorContextType>(
-    () => ({
-      translate,
-    }),
+    () => ({translate}),
     [translate],
   );
 
   const onTranslated = useCallback((result: string) => {
-    if (callback.current) {
-      callback.current(result);
-    }
+    callback.current?.(result);
   }, []);
 
   return (
@@ -90,5 +88,3 @@ const TranslatorProvider: React.FC<{children: React.ReactNode}> = ({
     </TranslatorContext.Provider>
   );
 };
-
-export default TranslatorProvider;

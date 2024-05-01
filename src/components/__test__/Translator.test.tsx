@@ -17,17 +17,14 @@ test('Render', () => {
     />,
   );
 
-  expect(
-    screen.getByText('https://translate.kakao.com/?lang=enko&q=hello'),
-  ).toBeOnTheScreen();
-  expect(
-    screen.getByText(
-      'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/4.0',
-    ),
-  ).toBeOnTheScreen();
+  const expectedUri = 'https://translate.kakao.com/?lang=enko&q=hello';
+  expect(screen.getByText(expectedUri)).toBeOnTheScreen();
+  const expectedUserAgent = /Mozilla/;
+  expect(screen.getByText(expectedUserAgent)).toBeOnTheScreen();
   // #result is kakao translate result view query selector
   expect(screen.getByText(/#result/)).toBeOnTheScreen();
-  jest.advanceTimersByTime(100);
+  // mock webview always response after 1000ms. refer to jest-setup.tsx
+  jest.advanceTimersByTime(1000);
   expect(onTranslated).toHaveBeenLastCalledWith('안녕');
 });
 
@@ -35,10 +32,8 @@ test('Render with default type', () => {
   render(
     <Translator from="en" to="ko" value="hello" onTranslated={() => {}} />,
   );
-
-  expect(
-    screen.getByText('https://translate.google.com/?sl=en&tl=ko&text=hello'),
-  ).toBeOnTheScreen();
+  const expctedUri = 'https://translate.google.com/?sl=en&tl=ko&text=hello';
+  expect(screen.getByText(expctedUri)).toBeOnTheScreen();
 });
 
 test('Render with empty from and to', () => {

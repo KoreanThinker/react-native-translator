@@ -1,7 +1,6 @@
 import Translator from './components/Translator';
 
-import useTranslator from './hooks/useTranslator';
-import TranslatorProvider from './providers/TranslatorProvider';
+import {TranslatorProvider, useTranslator} from './contexts/TranslatorContext';
 import languageCodeConverter from './utils/languageCodeConverter';
 import LANGUAGE_CODES, {
   LanguageCode,
