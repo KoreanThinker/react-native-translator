@@ -21,7 +21,7 @@ const Component = () => {
         from="en"
         to="ko"
         value={value}
-        type="papago"
+        type="google"
         onTranslated={t => setResult(t)}
       />
       <TextInput

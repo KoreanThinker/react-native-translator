@@ -14,7 +14,7 @@ test('translate once', async () => {
   act(() => {
     promise = translate('en', 'ko', 'hello', {type: 'kakao'});
   });
-
+  // throttle 100ms
   const expectedUri = 'https://translate.kakao.com/?lang=enko&q=hello';
   expect(screen.getByText(expectedUri)).toBeOnTheScreen();
   const expectedUserAgent = /Mozilla/;
@@ -23,7 +23,9 @@ test('translate once', async () => {
   expect(screen.getByText(/#result/)).toBeOnTheScreen();
 
   // mock webview always response after 1000ms. refer to jest-setup.tsx
-  jest.advanceTimersByTime(1000);
+  act(() => {
+    jest.advanceTimersByTime(1000);
+  });
   // @ts-ignore - Variable 'promise' is used before being assigned.ts(2454)
   await expect(promise).resolves.toBe('안녕');
 });
@@ -48,8 +50,9 @@ test('translate multiple', async () => {
   expect(screen.getByText(expectedUri2)).toBeOnTheScreen();
 
   // mock webview always response after 1000ms. refer to jest-setup.tsx
-  jest.advanceTimersByTime(1000);
-
+  act(() => {
+    jest.advanceTimersByTime(1000);
+  });
   // @ts-ignore - Variable 'promise' is used before being assigned.ts(2454)
   await expect(promise1).resolves.toBe('안녕');
   // @ts-ignore - Variable 'promise' is used before being assigned.ts(2454)
@@ -69,8 +72,9 @@ test('translate multiple', async () => {
   expect(screen.getByText(expectedUri3)).toBeOnTheScreen();
 
   // mock webview always response after 1000ms. refer to jest-setup.tsx
-  jest.advanceTimersByTime(1000);
-
+  act(() => {
+    jest.advanceTimersByTime(1000);
+  });
   // @ts-ignore - Variable 'promise' is used before being assigned.ts(2454)
   await expect(promise3).resolves.toBe('안녕');
   // inactive after translated
@@ -106,8 +110,21 @@ test('translate timeout', async () => {
     // @ts-ignore - Variable 'promise' is used before being assigned.ts(2454)
     promise = translate('en', 'ko', 'hello', {timeout: 500});
   });
-
-  jest.advanceTimersByTime(500);
+  act(() => {
+    jest.advanceTimersByTime(500);
+  });
   // @ts-ignore - Variable 'promise' is used before being assigned.ts(2454)
   await expect(promise).rejects.toBe('translate timeout');
+});
+
+test('translate nothing when empty value', async () => {
+  const hook = renderHook(useTranslator, {
+    wrapper: TranslatorProvider,
+  });
+
+  const {translate} = hook.result.current;
+
+  await expect(translate('en', 'ko', '')).resolves.toBe('');
+
+  expect(screen.queryByText(/http/)).not.toBeOnTheScreen();
 });

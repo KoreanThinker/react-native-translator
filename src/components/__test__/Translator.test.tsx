@@ -41,3 +41,15 @@ test('Render with empty from and to', () => {
 
   expect(screen.queryByText(/http/)).not.toBeOnTheScreen();
 });
+
+test('Render value change to empty', () => {
+  const onTranslated = jest.fn();
+  const {rerender} = render(
+    <Translator from="en" to="ko" value="hello" onTranslated={() => {}} />,
+  );
+  rerender(
+    <Translator from="en" to="ko" value="" onTranslated={onTranslated} />,
+  );
+
+  expect(onTranslated).toHaveBeenCalledWith('');
+});

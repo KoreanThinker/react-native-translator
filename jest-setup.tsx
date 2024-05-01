@@ -1,6 +1,7 @@
 import React from 'react';
 import '@testing-library/react-native/extend-expect';
 import {jest} from '@jest/globals';
+import _ from 'lodash';
 
 // Mocking native module (react-native-webview)
 // native module not supported in @testing-library/react-native
@@ -32,3 +33,7 @@ jest.mock('react-native-webview', () => {
     default: TestWebView,
   };
 });
+
+// ignore debounce on tests
+// @ts-ignore
+jest.spyOn(_, 'debounce').mockImplementation(fn => fn);

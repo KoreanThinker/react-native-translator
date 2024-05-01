@@ -1,6 +1,6 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import _ from 'lodash';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';
-import {View} from 'react-native';
 import {LanguageCode, SourceLanguageCode, TranslatorType} from '..';
 import translators from '../translators';
 import {LOADING_MESSSAGE} from '../classes/translator';
@@ -16,7 +16,8 @@ export interface TranslatorProps<T extends TranslatorType> {
 function Translator<T extends TranslatorType = 'google'>(
   props: TranslatorProps<T>,
 ) {
-  const {from, to, value, onTranslated, type = 'google'} = props;
+  const {from, to, value: _value, onTranslated, type = 'google'} = props;
+  const [value, setValue] = useState('');
   const translator = useMemo(() => translators[type], [type]);
   const injectedJavascript = useMemo(
     () => translator.getInjectedJavascript(),
@@ -36,16 +37,27 @@ function Translator<T extends TranslatorType = 'google'>(
     onTranslated(result);
   }, []);
 
+  // set value throttled
+  const throttledSetValue = useMemo(() => _.debounce(setValue, 100), []);
+  useEffect(() => {
+    if (_value === '') {
+      // clear value when input value is empty
+      setValue('');
+      onTranslated('');
+      return;
+    }
+    throttledSetValue(_value);
+  }, [_value]);
+
   return (
-    <View style={{display: 'none'}}>
-      <WebView
-        injectedJavaScript={injectedJavascript}
-        userAgent={userAgent}
-        source={{uri}}
-        onMessage={onMessage}
-        cacheEnabled
-      />
-    </View>
+    <WebView
+      style={{width: 0, height: 0}}
+      injectedJavaScript={injectedJavascript}
+      userAgent={userAgent}
+      source={{uri}}
+      onMessage={onMessage}
+      cacheEnabled
+    />
   );
 }
 
