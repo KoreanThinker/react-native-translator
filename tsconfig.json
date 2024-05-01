@@ -4,7 +4,8 @@
     "src/**/*"
   ],
   "exclude": [
-    "**/*.test.*"
+    "**/*.test.*",
+    "src/check-availability.ts"
   ],
   "compilerOptions": {
     "outDir": "./dist",

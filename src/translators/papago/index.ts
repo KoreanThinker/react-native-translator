@@ -4,7 +4,7 @@ import lanaugeCodes from './languageCode';
 const papagoTranslator = new Translator(
   {
     lanaugeCodes,
-    selector: '#txtTarget > span',
+    selector: '#txtTarget',
     toUrl: (from, to, value) =>
       `https://papago.naver.com/?sk=${from}&tk=${to}&hn=0&st=${encodeURI(
         value,
