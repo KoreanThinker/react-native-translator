@@ -5,7 +5,8 @@ on:
   pull_request:
     types: [synchronize, opened]
     paths:
-      - 'src/translators'
+      - 'src/translators/**/*'
+      - 'src/check-availability.ts'
   # run every day at 00:00 UTC
   schedule:
     - cron: '0 0 * * *'
