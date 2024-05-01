@@ -13,9 +13,9 @@ export interface TranslatorProps<T extends TranslatorType> {
   onTranslated: (result: string) => void;
 }
 
-const Translator = <T extends TranslatorType = 'google'>(
+function Translator<T extends TranslatorType = 'google'>(
   props: TranslatorProps<T>,
-) => {
+) {
   const {from, to, value, onTranslated, type = 'google'} = props;
   const translator = useMemo(() => translators[type], [type]);
   const injectedJavascript = useMemo(
@@ -47,6 +47,6 @@ const Translator = <T extends TranslatorType = 'google'>(
       />
     </View>
   );
-};
+}
 
 export default Translator;

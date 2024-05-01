@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: 18
       - run: yarn --pure-lockfile
-      - run: yarn lint-ci
-      - run: yarn test-ci
+      - run: yarn lint:ci
+      - run: yarn test:ci
       - run: yarn build
       - uses: codecov/codecov-action@v4.0.1
         with:
