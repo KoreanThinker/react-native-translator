@@ -1,0 +1,23 @@
+name: Check availability
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [synchronize, opened]
+    paths:
+      - 'src/translators'
+  # run every day at 00:00 UTC
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  test:
+    name: Check query selector availability each translators
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - run: yarn --pure-lockfile
+      - run: yarn check-availability
