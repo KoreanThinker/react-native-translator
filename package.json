@@ -47,6 +47,7 @@
     "@testing-library/react-native": "^12.4.5",
     "@tsconfig/react-native": "^3.0.5",
     "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.0",
     "@types/react": "^18.3.1",
     "eslint": "^8.19.0",
     "eslint-plugin-testing-library": "^6.2.2",
@@ -58,5 +59,8 @@
     "react-native-webview": "^11.26.1",
     "react-test-renderer": "^18.3.1",
     "typescript": "5.1.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }

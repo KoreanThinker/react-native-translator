@@ -31,6 +31,9 @@ export function TranslatorProvider({children}: {children: React.ReactNode}) {
 
   const translate: Translate = useCallback(
     async (_from, _to, _value, option) => {
+      if (_value === '') {
+        return '';
+      }
       return new Promise<string>((resolve, reject) => {
         setTasks(prev => {
           const timeout = option?.timeout ?? 5000;
@@ -75,9 +78,11 @@ export function TranslatorProvider({children}: {children: React.ReactNode}) {
 
   return (
     <TranslatorContext.Provider value={{translate}}>
-      {tasks.map((task, index) => (
-        <TranslatorWrapper {...task} key={index} />
-      ))}
+      <View style={{width: 0, height: 0}}>
+        {tasks.map((task, index) => (
+          <TranslatorWrapper {...task} key={index} />
+        ))}
+      </View>
       {children}
     </TranslatorContext.Provider>
   );
