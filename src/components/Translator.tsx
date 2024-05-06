@@ -31,7 +31,7 @@ function Translator<T extends TranslatorType = 'google'>(
 
   const onMessage = useCallback((event: WebViewMessageEvent) => {
     const result = event.nativeEvent.data;
-    if (!result || result === LOADING_MESSSAGE) {
+    if (!result || result === LOADING_MESSSAGE || result === 'Enter a URL') {
       return;
     }
     onTranslated(result);

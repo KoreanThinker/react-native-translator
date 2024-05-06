@@ -1,7 +1,8 @@
 import React, {createContext, useCallback, useContext, useState} from 'react';
 import {View} from 'react-native';
-import Translator, {LanguageCode, SourceLanguageCode, TranslatorType} from '..';
 import {TranslatorProps} from '../components/Translator';
+import { TranslatorType } from '../constants/translatorTypes';
+import { LanguageCode, SourceLanguageCode } from '../constants/languageCode';
 
 type Translate = <T extends TranslatorType = 'google'>(
   from: SourceLanguageCode<T>,
