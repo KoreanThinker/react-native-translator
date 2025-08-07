@@ -1,5 +1,4 @@
 import React from 'react';
-import '@testing-library/react-native/extend-expect';
 import {jest} from '@jest/globals';
 import _ from 'lodash';
 

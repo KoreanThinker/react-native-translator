@@ -1,5 +1,10 @@
-import {render, screen} from '@testing-library/react-native';
 import React from 'react';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react-native';
 import Translator from '../Translator';
 import 'react-native-webview';
 
@@ -52,4 +57,33 @@ test('Render value change to empty', () => {
   );
 
   expect(onTranslated).toHaveBeenCalledWith('');
+});
+
+test('Handle "Enter a URL" response for Google translation', async () => {
+  const onTranslated = jest.fn();
+
+  // Render the Translator component with the "google" type
+  render(
+    <Translator
+      type="google"
+      from="en"
+      to="ko"
+      value="hello"
+      onTranslated={onTranslated}
+    />,
+  );
+
+  // Check for the URL directly in the WebView source
+  const expectedUri = 'https://translate.google.com/?sl=en&tl=ko&text=hello';
+  await waitFor(() => {
+    expect(screen.getByText(expectedUri)).toBeOnTheScreen(); // Match the URL text
+  });
+
+  // Simulate the WebView message event with 'Enter a URL' as result
+  fireEvent(screen.getByText(expectedUri), 'message', {
+    nativeEvent: {data: 'Enter a URL'},
+  });
+
+  // Ensure the `onTranslated` callback was NOT called, as 'Enter a URL' is an error message
+  expect(onTranslated).not.toHaveBeenCalled();
 });

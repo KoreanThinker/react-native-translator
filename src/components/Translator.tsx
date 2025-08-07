@@ -1,4 +1,5 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import * as React from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import _ from 'lodash';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';
 import {LanguageCode, SourceLanguageCode, TranslatorType} from '..';
@@ -31,7 +32,7 @@ function Translator<T extends TranslatorType = 'google'>(
 
   const onMessage = useCallback((event: WebViewMessageEvent) => {
     const result = event.nativeEvent.data;
-    if (!result || result === LOADING_MESSSAGE) {
+    if (!result || result === LOADING_MESSSAGE || result === 'Enter a URL') {
       return;
     }
     onTranslated(result);

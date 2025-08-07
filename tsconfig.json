@@ -10,6 +10,11 @@
   "compilerOptions": {
     "outDir": "./dist",
     "noEmit": false,
-    "declaration": true
+    "declaration": true,
+    "module": "es2022",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowJs": true
   }
 }
