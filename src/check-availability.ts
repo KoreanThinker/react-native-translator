@@ -16,7 +16,19 @@ const output1 = /안녕/;
 const output2 = /이름/;
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    // @ts-ignore
+    headless: 'new',
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--no-first-run',
+      '--no-zygote',
+      '--disable-gpu',
+    ],
+  });
 
   for (const translator of _.values(translators)) {
     const url = translator.toUrl('en', 'ko', input);
