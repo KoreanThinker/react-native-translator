@@ -1,9 +1,9 @@
 import google from '../translators/google/languageCode';
-import kakao from '../translators/kakao/languageCode';
+// import kakao from '../translators/kakao/languageCode';
 import papago from '../translators/papago/languageCode';
 import {TranslatorType} from './translatorTypes';
 
-const LANGUAGE_CODES = {papago, kakao, google} as const;
+const LANGUAGE_CODES = {papago, google} as const; // kakao is deprecated
 type ValueOf<T> = T[keyof T];
 
 type SpecifiedLanguageCode<T extends TranslatorType> = ValueOf<

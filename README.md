@@ -27,7 +27,7 @@ Unofficial free translate component & hook
 
 - [Google](https://translate.google.com/)
 - [Papago](https://papago.naver.com/)
-- [Kakao](https://translate.kakao.com/)
+- [Kakao](https://translate.kakao.com/) _(deprecated)_
 
 ---
 

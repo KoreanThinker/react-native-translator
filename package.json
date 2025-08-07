@@ -1,7 +1,7 @@
 {
   "name": "react-native-translator",
   "title": "React Native Translator",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "Free translate component & hook",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,10 +12,12 @@
     "build": "tsc",
     "prepare": "npm run build",
     "lint": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "fix": "yarn lint && yarn format",
     "test": "jest --watch",
     "lint:ci": "eslint src",
     "test:ci": "jest --coverage",
-    "check-availability": "ts-node src/check-availability.ts"
+    "check-availability": "tsx src/check-availability.ts"
   },
   "repository": {
     "type": "git",
@@ -62,6 +64,7 @@
     "react-native-webview": "^13.15.0",
     "react-test-renderer": "^19.1.1",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
     "typescript": "5.1.5"
   },
   "dependencies": {

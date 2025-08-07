@@ -14,7 +14,7 @@ test('Render', () => {
   const onTranslated = jest.fn();
   render(
     <Translator
-      type="kakao"
+      type="google"
       from="en"
       to="ko"
       value="hello"
@@ -22,12 +22,9 @@ test('Render', () => {
     />,
   );
 
-  const expectedUri = 'https://translate.kakao.com/?lang=enko&q=hello';
+  const expectedUri = 'https://translate.google.com/?sl=en&tl=ko&text=hello';
   expect(screen.getByText(expectedUri)).toBeOnTheScreen();
-  const expectedUserAgent = /Mozilla/;
-  expect(screen.getByText(expectedUserAgent)).toBeOnTheScreen();
-  // #result is kakao translate result view query selector
-  expect(screen.getByText(/#result/)).toBeOnTheScreen();
+
   // mock webview always response after 1000ms. refer to jest-setup.tsx
   jest.advanceTimersByTime(1000);
   expect(onTranslated).toHaveBeenLastCalledWith('안녕');

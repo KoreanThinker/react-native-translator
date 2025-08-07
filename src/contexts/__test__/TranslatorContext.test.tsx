@@ -12,15 +12,11 @@ test('translate once', async () => {
 
   let promise: Promise<string>;
   act(() => {
-    promise = translate('en', 'ko', 'hello', {type: 'kakao'});
+    promise = translate('en', 'ko', 'hello', {type: 'google'});
   });
   // throttle 100ms
-  const expectedUri = 'https://translate.kakao.com/?lang=enko&q=hello';
+  const expectedUri = 'https://translate.google.com/?sl=en&tl=ko&text=hello';
   expect(screen.getByText(expectedUri)).toBeOnTheScreen();
-  const expectedUserAgent = /Mozilla/;
-  expect(screen.getByText(expectedUserAgent)).toBeOnTheScreen();
-  // #result is kakao translate result view query selector
-  expect(screen.getByText(/#result/)).toBeOnTheScreen();
 
   // mock webview always response after 1000ms. refer to jest-setup.tsx
   act(() => {
@@ -40,11 +36,11 @@ test('translate multiple', async () => {
   let promise1: Promise<string>;
   let promise2: Promise<string>;
   act(() => {
-    promise1 = translate('en', 'ko', 'hello', {type: 'kakao'});
+    promise1 = translate('en', 'ko', 'hello', {type: 'google'});
     promise2 = translate('en', 'ko', 'hello', {type: 'papago'});
   });
 
-  const expectedUri1 = /translate.kakao.com/;
+  const expectedUri1 = /translate.google.com/;
   expect(screen.getByText(expectedUri1)).toBeOnTheScreen();
   const expectedUri2 = /papago.naver.com/;
   expect(screen.getByText(expectedUri2)).toBeOnTheScreen();
